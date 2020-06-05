@@ -1,8 +1,5 @@
 ---
-applications :
-- name: "angular-cloud-deployment"
-  path : "studio/"
-  memory : 512M
-  disk_quota: 1024M
-  instances: 1
-  buildpack : staticfile_buildpack
+applications:
+- name: <App Name>
+  path: studio
+  random-route: true
