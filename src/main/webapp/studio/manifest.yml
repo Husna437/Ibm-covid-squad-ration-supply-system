@@ -1,0 +1,7 @@
+---
+applications :
+- name: "angular-cloud-deployment"
+  path : "studio/"
+  memory : 256M
+  buildpack :
+  - "https://github.com/cloudfoundry/staticfile-buildpack.git"
