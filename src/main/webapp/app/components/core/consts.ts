@@ -6,5 +6,8 @@ export const API_URLS = {
 
 export const APP_URLS = {
     "DASHBOARD" : "covidSquad",
-    "RATION_DETAILS" : "ration-details"
+    "HOME": "home",
+    "RATION_DETAILS" : "ration-details",
+    "ABOUT_US": "about-us",
+    "CONTACT_US": "contsct-us"
 };

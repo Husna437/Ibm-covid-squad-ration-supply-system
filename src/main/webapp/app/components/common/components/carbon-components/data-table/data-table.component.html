@@ -66,8 +66,8 @@
 			</thead>
 			<tbody>
                 <tr *ngIf="(filteredRows$ | async).length == 0">                    
-                    <td  *ngIf="batchActions.length > 0" [attr.colspan]="headers.length + 1">{{"DATA_TABLE.NO_ITEMS" | translate }}</td>
-                    <td   *ngIf="batchActions.length == 0" [attr.colspan]="headers.length">{{"DATA_TABLE.NO_ITEMS" | translate }}</td>
+                    <td  *ngIf="batchActions.length > 0" [attr.colspan]="headers.length + 1">No Items to Display</td>
+                    <td   *ngIf="batchActions.length == 0" [attr.colspan]="headers.length">No Items to Display</td>
                 </tr>
 			<ng-container *ngFor="let row of filteredRows$ | async | slice:displayRange.start:displayRange.end; let rowIdx = index">
 				<ng-container *ngIf="!row.expand">                  
@@ -185,7 +185,7 @@
 	</div>
 	<div class="bx--pagination" data-pagination [style.visibility]="filteredRows.length > 0 ? 'visible' : 'hidden'">
 		<div class="bx--pagination__left">
-			<span class="bx--pagination__text">{{ "DATA_TABLE.ITEMS_PER_PAGE" | translate }}:</span>
+			<span class="bx--pagination__text">Items Per Page</span>
 			<div class="bx--select bx--select--inline">
 				<label for="select-id-pagination-left" class="bx--visually-hidden">
 					{{ "DATA_TABLE.NO_OF_ITEMS_PER_PAGE" | translate}}
@@ -204,13 +204,12 @@
 			<span class="bx--pagination__text">
 					<span>|&nbsp;</span>
 					<span data-displayed-item-range>
-						{{getNumberOfRows() === 0 ? '0' : displayRange.start + 1 }}-{{displayRange.end}}</span> {{ "DATA_TABLE.OF" | translate }}
-					<span data-total-items>{{getNumberOfRows()}}</span> {{ "DATA_TABLE.ITEMS" | translate }}
+						{{getNumberOfRows() === 0 ? '0' : displayRange.start + 1 }}-{{displayRange.end}}</span> Items
 				</span>
 		</div>
 		<div class="bx--pagination__right bx--pagination--inline">
 				<span class="bx--pagination__text">
-					<span data-displayed-page-number>{{currentPage}}</span> {{ "DATA_TABLE.OF" | translate }} <span data-total-pages>{{numberOfPages}}</span> {{ "DATA_TABLE.PAGES" | translate }}
+					<span data-displayed-page-number>{{currentPage}}</span> Of <span data-total-pages>{{numberOfPages}}</span> Pages
 				</span>
 			<button class="bx--pagination__button bx--pagination__button--backward" data-page-backward [attr.aria-label]="'BUTTONS.PREVIOUS_PAGE' | translate">
 				<svg focusable="false" class="bx--pagination__button-icon" width="8" height="12" viewBox="0 0 8 12" fill-rule="evenodd">

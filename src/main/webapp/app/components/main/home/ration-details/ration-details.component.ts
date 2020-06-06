@@ -30,45 +30,116 @@ export class RationDetailsComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         this.fpli.conceal();
-        this.states = ["Karnataka", "TamilNadu"];
+        this.states = ["Karnataka"];
         this.districts = ["Bangalore"];
-        this.circle = ["Yelhanka"];
+        this.circle = ["Yelhanka", "Nagavara", "KalyanNagar", "RTNagar", "KRPuram"];
         this.headers = [
-            {name: "Ration Card Number", width: "10%"},
-            {name: "Consumer Name", width: "10%"},
-            {name: "Consumer Address", width: "10%"},
-            {name: "Consumer Phone Number", width: "10%"},
+            {name: "Consumer Name", width: "12%"},
+            {name: "Ration Card Number", width: "15%"},
+            {name: "Category", width: "8%"},
+            {name: "Age", width: "5%"},
+            {name: "Sex", width: "5%"},
+            {name: "Contact Number", width: "10%"},
+            {name: "Address", width: "10%"},
             {name: "Ration Amount", width: "10%"},
             {name: "Price", width: "5%"},
-            {name: "Status Delivered/Not Delivered", width: "15%", sortable: false}
+            {name: "Status Delivered/Not Delivered", width: "20%"}
         ];
-        this.getRationDetails();
     }
 
     getRationDetails() {
+        let data = [{
+            "consumername": "Ramesh Kumar",
+            "rationcardnumber": "KA12345678",
+            "category": "AAY",
+            "age": 35,
+            "sex": "M",
+            "mobilenumber": 1234567890,
+            "address": "Karnataka",
+            "rationamount": "Rice 35Kg",
+            "price": "Rs.35",
+            "deliveryStatus": "Delivered"
+          }, {
+            "consumername": "Ravi Raju",
+            "rationcardnumber": "KA99345678",
+            "category": "PHH",
+            "age": 45,
+            "sex": "M",
+            "mobilenumber": 1234567890,
+            "address": "Karnataka",
+            "rationamount": "Rice 5Kg",
+            "price": "Rs.5",
+            "deliveryStatus": "Delivered"
+          },{
+            "consumername": "Prakash Reddy",
+            "rationcardnumber": "KA99345378",
+            "category": "PHH",
+            "age": 34,
+            "sex": "M",
+            "mobilenumber": 1234567890,
+            "address": "Karnataka",
+            "rationamount": "Rice 5Kg",
+            "price": "Rs.5",
+            "deliveryStatus": "Delivered"
+          },{
+            "consumername": "Lakshmi Devi",
+            "rationcardnumber": "KA93345678",
+            "category": "PHH",
+            "age": 60,
+            "sex": "F",
+            "mobilenumber": 1234567890,
+            "address": "Karnataka",
+            "rationamount": "Rice 5Kg",
+            "price": "Rs.5",
+            "deliveryStatus": "Delivered"
+          },
+          {
+            "consumername": "Sreenath",
+            "rationcardnumber": "KA93325678",
+            "category": "PHH",
+            "age": 25,
+            "sex": "M",
+            "mobilenumber": 1234567890,
+            "address": "Karnataka",
+            "rationamount": "Rice 5Kg",
+            "price": "Rs.5",
+            "deliveryStatus": "Delivered"
+          }]
         let rows = [];
-        rows.push({
-            data: [
-                "12345678",
-                "Husna Khanam",
-                "#xyz,doorr no xyz,xyz road,yelhanka,bangalore",
-                "1234567890",
-                "5kg Rice,2lts oil, 2kg wheat",
-                "100Rs",
-                "Delivered"
-            ],
-            metadata: { // not visible in the UI
-            }
-
-        });
-    this.rows = rows.slice();
-    }
+        const dataRows = [];
+        for (const consumer of data) {
+            dataRows.push({
+                data: [
+                    consumer.consumername,
+                    consumer.rationcardnumber,
+                    consumer.category,
+                    consumer.age,
+                    consumer.sex,
+                    consumer.mobilenumber,
+                    consumer.address,
+                    consumer.rationamount,
+                    consumer.price,
+                    consumer.deliveryStatus                   
+                ],
+                metadata: { // not visible in the UI
+                    
+                }
+            });
+            this.rows = dataRows.slice();
+        }
+    }   
 
 
     onStateSwitch($event) {}
     onDistrictSwitch($event){}
     onCircleSwitch($event){}
-    getDetails(){}
+    getDetails(){
+        this.fpli.show();
+        setTimeout(() => {
+            this.getRationDetails();
+            this.fpli.conceal();
+        },1000);    
+    }
     
     ngOnDestroy() {
         this.ngUnsubscribe.next();
